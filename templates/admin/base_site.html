@@ -1,0 +1,12 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block branding %}
+   
+        <img src="{% static 'images/home/logo.png' %}" alt="Estate logo" height="50"  width="130" class="brand_img" />
+   
+{% endblock %}
+
+{% block extrastyle %}
+<link href="{% static 'css/admin.css' %}" rel="stylesheet">
+{% endblock %}
