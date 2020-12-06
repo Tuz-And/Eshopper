@@ -12,7 +12,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ("category",)
     list_editable = ("is_published",)
     search_fields = ("tittle", "price", "description", "price", "category")
-    list_per_page = 25
+    list_per_page = 15
 
 
 admin.site.register(Product, ProductAdmin)

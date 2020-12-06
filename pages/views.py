@@ -5,7 +5,7 @@ from product.models import Product
 def index(request):
     product = Product.objects.order_by('-list_date').filter(is_published=True)
     # product = Product.objects.all()
-    paginator = Paginator(product, 3)
+    paginator = Paginator(product, 9)
     page = request.GET.get("page")
     product_per_page = paginator.get_page(page)
     context = {
