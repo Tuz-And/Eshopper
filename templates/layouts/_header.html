@@ -68,13 +68,14 @@
                                 <li><a class="offset-2 col-4 align-self-center enter" href="{% url 'dashboard' %}">Welcome, {{ user.username }}</a></li>
                                 <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                                 <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                                <li><a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                                 <li><a class="col-1 align-self-center" href="javascript:{document.getElementById('logout').submit()}" >Вихід</a></li>
                                 <form action="{% url 'logout' %}" id='logout' method="POST">
                                     {% csrf_token %}
                                     <input type="hidden">
                                 </form>
                             {% else %}
+                                <li><a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                                 <li><a href="{% url 'register' %}"><i class="fa fa-lock"></i> Register</a></li>
                                 <li><a href="{% url 'login' %}"><i class="fa fa-lock"></i> Login</a></li>
                             {% endif %}
@@ -116,7 +117,7 @@
                                     <li><a href="shop.html">Products</a></li>
                                     <li><a href="product-details.html">Product Details</a></li>
                                     <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
+                                    <li><a href="{% url 'cart' %}">Cart</a></li>
                                     <li><a href="login.html">Login</a></li>
                                 </ul>
                             </li>
@@ -126,7 +127,7 @@
                                     <li><a href="blog-single.html">Blog Single</a></li>
                                 </ul>
                             </li>
-                            <li><a href="404.html">404</a></li>
+                            <li><a href="{% url 'error' %}">404</a></li>
                             <li
                                {% if 'contact-us' == request.path %}
                                 class="active"

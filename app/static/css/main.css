@@ -2520,3 +2520,7 @@ h2.title {
   color: #FE980F;
 }
 
+.cart_product img{
+ width: 60px;
+ height: 40px;
+}

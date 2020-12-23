@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'pages',
     'product',
     'django_seed',
+
+    
 ]
 
 MIDDLEWARE = [

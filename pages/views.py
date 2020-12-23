@@ -18,8 +18,7 @@ def index(request):
 
 
 def error(reqest):
-    return render(reqest,"pages/404.html")
-
+    return render(reqest, "pages/404.html")
 
 def contact_us(reqest):
     return render(reqest,"pages/contact-us.html")
@@ -83,3 +82,7 @@ def register(request):
 
 def dashboard(request):
     return render(request, "pages/dashboard.html")
+
+
+def cart(request):
+    return render(request, "pages/cart.html")
