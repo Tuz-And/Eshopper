@@ -4,6 +4,7 @@ from product.models import Product
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 
 def index(request):
     product = Product.objects.order_by('-list_date').filter(is_published=True)
@@ -85,4 +86,22 @@ def dashboard(request):
 
 
 def cart(request):
-    return render(request, "pages/cart.html")
+    if request.method == 'POST':
+        print('*******************', request.POST)
+        
+        product_tittle = request.POST['tittle']
+        product_price = request.POST['price']
+
+        send_mail(
+            'New Order',
+            'There has been an inquiry for ' + product_tittle +
+            '. ', "Price " + product_price +
+            'kozurnuj89@gmail.com',
+            ["kozurnuj@ukr.net", 'kozurnuj@ukr.net'],
+            fail_silently=False
+        )
+
+        return render(request, "pages/dashboard.html")
+
+    else:
+        return render(request, "pages/cart.html")

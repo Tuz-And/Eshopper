@@ -28,3 +28,22 @@ $(document).ready(function(){
 		});
 	});
 });
+
+
+
+window.addEventListener("load",  () => {
+	const message = document.querySelectorAll(".messages");
+	console.log(message)
+
+	if (message !== null){
+		for(let i = 0; i < message.length; i++){
+			let time = 2000;
+			time *= i +1;
+			setTimeout(function() {
+					message[i].remove(message);
+				}, time)
+		}
+		
+	}
+	
+});

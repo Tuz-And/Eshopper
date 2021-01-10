@@ -2524,3 +2524,9 @@ h2.title {
  width: 60px;
  height: 40px;
 }
+
+.btn-order{
+  display: flex;
+  justify-content: end;
+  padding: 10px;
+}

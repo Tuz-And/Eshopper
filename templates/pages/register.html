@@ -7,6 +7,7 @@
 				<div class="col-sm-offset-4 col-sm-4">
 					<div class="signup-form"><!--sign up form-->
 						<h2>New User Signup!</h2>
+						{% include 'layouts/_alerts.html' %}
 						<form action="{% url 'register'%}" method="POST">
                             {% csrf_token %}
 							<input type="text" placeholder="Username" name="username" required />
