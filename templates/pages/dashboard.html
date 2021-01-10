@@ -1,12 +1,58 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
-<section id="form"><!--form-->
-    <div class="container">
-        <div class="row">
-            <h1>Dashboard</h1>            
-        </div>
-    </div>
-</section><!--/form-->
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>User dashboard</h1>
+      {% include 'layouts/_alerts.html' %}
+      {% if orders %} {% for order in orders %}
+      <div class="table-responsive cart_info">
+        <div>
+          <table class="table table-condensed">
+            <thead>
+              <tr class="cart_menu">
+                <td class="image">Item</td>
+                <td class="description"></td>
+                <td class="price">Price</td>
+                <td class="quantity">Quantity</td>
+                <td class="total">Total</td>
+                <td></td>
+              </tr>
+            </thead>
 
-{% endblock  %}
+            <tbody>
+
+              <tr>
+                <td class="cart_product">
+                  <img src="{{ order.photo_main.url }}" alt="{{order.tittle}}">
+                </td>
+                <td class="cart_description">
+                  <h4>{{ order.tittle }}</h4>
+                  <input type="hidden" name="tittle" value="{{ order.tittle }}" />
+                  <p>{{ order.sale }}</p>
+                  <input type="hidden" name="sale" value="{{ order.sale }}" />
+                </td>
+                <td class="cart_price">
+                  <p>${{ order.price }}</p>
+                  <input type="hidden" name="price" value="{{ order.price }}" />
+                </td>
+                <td class="cart_quantity">
+                  <div class="cart_quantity_button">
+                    <input class="cart_quantity_input" type="number" name="quantity" name="count" value="1"
+                      autocomplete="off" size="2">
+                  </div>
+                </td>
+                <td class="cart_total">
+                  <p class="cart_total_price">${{ order.price }}</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

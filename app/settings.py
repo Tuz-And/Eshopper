@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'pages',
     'product',
     'django_seed',
+    'orders',
 
     
 ]
@@ -132,7 +133,7 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = '/media/'
+# MEDIA_URL = '/media/'
 
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',

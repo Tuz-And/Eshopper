@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+from orders.models import Orders
 
 def index(request):
     product = Product.objects.order_by('-list_date').filter(is_published=True)
@@ -91,17 +92,33 @@ def cart(request):
         
         product_tittle = request.POST['tittle']
         product_price = request.POST['price']
-
-        send_mail(
-            'New Order',
-            'There has been an inquiry for ' + product_tittle +
-            '. ', "Price " + product_price +
-            'kozurnuj89@gmail.com',
-            ["kozurnuj@ukr.net", 'kozurnuj@ukr.net'],
-            fail_silently=False
+        product_sale = request.POST['sale']
+        product_quantity = request.POST['quantity']
+        product_image = request.POST['image']
+        # send_mail(
+        #     'New Order',
+        #     'There has been an inquiry for ' + product_tittle +
+        #     '. ', "Price " + product_price +
+        #     'kozurnuj89@gmail.com',
+        #     ["kozurnuj@ukr.net", 'kozurnuj@ukr.net'],
+        #     fail_silently=False
+        # )
+        order = Orders(
+            tittle=product_tittle,
+            price=product_price,
+            sale=product_sale,
+            quantity=product_quantity,
+            photo_main=product_image
         )
+        order.save()
+        orders = Orders.objects.all()
 
-        return render(request, "pages/dashboard.html")
+        context = {
+            "orders": orders
+        }
+        messages.success(
+            request, 'Your request has been submitted, a realtor will get back to you soon')
+        return render(request, "pages/dashboard.html",context)
 
     else:
         return render(request, "pages/cart.html")
