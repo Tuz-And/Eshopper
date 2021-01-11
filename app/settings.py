@@ -146,5 +146,5 @@ CART_SESSION_ID = 'cart'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "kozurnuj89@gmail.com"
-EMAIL_HOST_PASSWORD = '-'
+EMAIL_HOST_PASSWORD = 'dfcbkmjdbx1'
 EMAIL_USE_TLS = True

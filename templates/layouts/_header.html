@@ -65,7 +65,7 @@
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
                             {% if user.is_authenticated %}
-                                <li><a class="offset-2 col-4 align-self-center enter" href="{% url 'dashboard' %}">Welcome, {{ user.username }}</a></li>
+                                <li><a class="offset-2 col-4 align-self-center enter" href="{% url 'dashboard' %}">Welcome, {{ user.username }} </a></li>
                                 <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                                 <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                                 <li><a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
@@ -142,7 +142,10 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="search_box pull-right">
-                        <input type="text" placeholder="Search" />
+                        <form action="{% url 'index' %}">
+                            <input type="text" placeholder="Search" name = "search"/>
+                            <button type='submit' class = 'btn btn-success'>Search</button>
+                        </form>
                     </div>
                 </div>
             </div>

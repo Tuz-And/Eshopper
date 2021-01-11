@@ -8,7 +8,14 @@ from django.core.mail import send_mail
 from orders.models import Orders
 
 def index(request):
-    product = Product.objects.order_by('-list_date').filter(is_published=True)
+
+    search_query = request.GET.get('search','')
+
+    if search_query:
+        product = Product.objects.filter(tittle=search_query)
+    else:
+        product = Product.objects.order_by('-list_date').filter(is_published=True)
+        
     # product = Product.objects.all()
     paginator = Paginator(product, 9)
     page = request.GET.get("page")
@@ -95,14 +102,18 @@ def cart(request):
         product_sale = request.POST['sale']
         product_quantity = request.POST['quantity']
         product_image = request.POST['image']
-        # send_mail(
-        #     'New Order',
-        #     'There has been an inquiry for ' + product_tittle +
-        #     '. ', "Price " + product_price +
-        #     'kozurnuj89@gmail.com',
-        #     ["kozurnuj@ukr.net", 'kozurnuj@ukr.net'],
-        #     fail_silently=False
-        # )
+
+        if request.user.is_authenticated: 
+            email  = User.objects.filter(is_active=True).values_list('email', flat=True)
+            print('--------------------',email,'----------')
+            # send_mail(
+            #     'New Order','email '+request.user.email+
+            #     'There has been an inquiry for ' + product_tittle +
+            #     '. ', "Price " + product_price +
+            #     'kozurnuj89@gmail.com',
+            #     ["kozurnuj@ukr.net", 'kozurnuj@ukr.net'],
+            #     fail_silently=False
+            # )
         order = Orders(
             tittle=product_tittle,
             price=product_price,
